@@ -8,8 +8,15 @@ def total_salary(path):
             for i in lines:
                 linez.append(i.split(","))
             for i in linez:
-                summ += int(i[1])
-    except FileNotFoundError and OSError:
-        return "Файл пошкоджений або не знайдений!!!"
-    return f"Загальна сума заробітної плати: {summ}, Середня заробітна плата: {int(summ/len(linez))}"
-print(total_salary(input("Введіть шлях до файлу: ")))
+                summ += float(i[1])
+            average = summ/len(linez)
+        return summ, average
+    except (FileNotFoundError, OSError, ZeroDivisionError) :
+        return None
+
+result = total_salary(input("Введіть шлях до файлу: "))
+if result:
+    total, average = result
+    print(f"Загальна сума заробітної плати: {total}, cередня заробітна плата: {average}")
+else:
+    print("Файл пустий або пошкоджений!!!")
