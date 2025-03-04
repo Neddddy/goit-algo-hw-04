@@ -22,8 +22,9 @@ def show_number(args, contacts):
         return f"{name}\'s phone: {contacts[name]}"
     elif name not in contacts:
         return "Contact does not exist"
+def show_contacts(args, contacts):
+    return contacts
 
-    pass
 def main():
     contacts = {}
     print("Welcome to the assistant bot!")
@@ -39,7 +40,7 @@ def main():
         elif command == "add":
             print(add_contact(args, contacts))
         elif command == "all":
-            print(contacts)
+            print(show_contacts(args, contacts))
         elif command == "change":
             print(change_phone(args,contacts))
         elif command == "phone":
